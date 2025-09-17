@@ -102,7 +102,11 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+              "baseHref": "/insillion-common-module-fe/",
+              "index": "dist/insillion-common-module-fe/browser/index.csr.html"
+            }
         }
       }
     }
