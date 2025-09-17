@@ -1,0 +1,20 @@
+<div class="carousel">
+  <!-- Slides -->
+  <div
+    class="carousel-slide"
+    *ngFor="let img of banners; let i = index"
+    [class.active]="i === currentIndex"
+  >
+    <img [src]="img.image" [alt]="img.alt" />
+  </div>
+
+  <!-- Indicators -->
+  <div class="carousel-indicators">
+    <span
+      *ngFor="let img of banners; let i = index"
+      (click)="goToSlide(i)"
+      [class.active]="i === currentIndex"
+    >
+    </span>
+  </div>
+</div>

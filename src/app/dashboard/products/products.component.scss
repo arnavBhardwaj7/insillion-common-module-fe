@@ -1,0 +1,43 @@
+.style-card {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  gap: 1rem;
+  background: #fcfbfc;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.style-card-icon {
+  width: 4rem;
+  height: 4rem;
+}
+
+.style-card-title {
+  color: var(--Black-Primary, #161a23);
+  font-family: Mulish;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.style-card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.product-count {
+  display: block;
+  color: #979797;
+  font-family: Mulish;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}

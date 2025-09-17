@@ -1,0 +1,23 @@
+.container-fluid {
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.container-fluid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container-fluid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.container-fluid::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.container-fluid::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

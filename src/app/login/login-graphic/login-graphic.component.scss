@@ -1,0 +1,94 @@
+@use "sass:math";
+
+.circle-container {
+  position: relative;
+}
+
+.center-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.center-image img {
+  width: 220px;
+  height: 220px;
+}
+
+//   /* Position 8 icons equally spaced around the circle */
+//   .orbit-icon:nth-child(1) { top: 0%; left: 50%; }
+//   .orbit-icon:nth-child(2) { top: 15%; left: 85%; }
+//   .orbit-icon:nth-child(3) { top: 50%; left: 100%; }
+//   .orbit-icon:nth-child(4) { top: 85%; left: 85%; }
+//   .orbit-icon:nth-child(5) { top: 100%; left: 50%; }
+//   .orbit-icon:nth-child(6) { top: 85%; left: 15%; }
+//   .orbit-icon:nth-child(7) { top: 50%; left: 0%; }
+//   .orbit-icon:nth-child(8) { top: 15%; left: 15%; }
+
+/* Define a variable for the radius of the orbit */
+$orbit-radius: 210px; /* Adjust this value as needed, it's half of the `circle-container` width/height */
+$number-of-icons: 8;
+$angle-step: math.div(360deg, $number-of-icons);
+
+.orbit {
+  position: relative; /* Change `orbit` to relative positioning */
+  width: 420px;
+  height: 420px;
+  border: 3px dashed rgb(47, 47, 214);
+  border-radius: 70%;
+  animation: rotateOrbit 20s linear infinite;
+}
+
+.orbit-icon-wrapper {
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  border: 4px solid #1362df;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Icons must counter-rotate to stay upright */
+  animation: counter-rotate-images 20s linear infinite;
+}
+
+.orbit-icon {
+  width: 60%;
+  height: 60%;
+}
+
+@for $i from 1 through $number-of-icons {
+  .orbit-icon-wrapper:nth-child(#{$i}) {
+    $angle: ($i - 1) * $angle-step;
+    /* Use sine and cosine to calculate X and Y positions on a circle */
+    /* Add `50%` to position relative to the center of the orbit */
+    left: calc(
+      47% + #{$orbit-radius} * cos(#{$angle}) - 30px
+    ); /* 30px is half the icon width to center it */
+    top: calc(
+      47% + #{$orbit-radius} * sin(#{$angle}) - 30px
+    ); /* 30px is half the icon height to center it */
+  }
+}
+
+/* Keyframes remain the same */
+@keyframes rotateOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes counter-rotate-images {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}

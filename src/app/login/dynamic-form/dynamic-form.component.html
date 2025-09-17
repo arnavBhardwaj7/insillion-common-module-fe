@@ -1,0 +1,109 @@
+<div class="col-lg-12">
+  <div class="ins-toggle-group w-100">
+    <button
+      *ngFor="let key of schemaKeys"
+      class="ins-toggle-item"
+      [ngClass]="{
+        'ins-toggle-item--active': key === userType,
+        'sso-login-button': key === 'sso'
+      }"
+      (click)="onUserTypeChange(key)"
+    >
+      {{ schema[key].label }}
+    </button>
+  </div>
+
+  <div class="dynamic-content-container" style="min-height: 350px">
+    <ng-container *ngIf="currentSchema">
+      <ng-container [ngSwitch]="currentSchema.type">
+        <ng-container *ngSwitchCase="'form'">
+          <form
+            [formGroup]="form"
+            class="form-main-container"
+            (ngSubmit)="onSubmit()"
+          >
+            <ng-container *ngFor="let field of currentSchema.fields">
+              <div
+                class="col-md-6 col-lg-4 col-xl-3 w-100 mb"
+                [ngSwitch]="field.type"
+              >
+                <ng-container *ngSwitchCase="'input'">
+                  <div *ngIf="field.label == 'Username'">
+                    <label class="form-label required">{{ field.label }}</label>
+                    <div class="input-icon icon-user">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="{{ field.placeholder }}"
+                        [formControlName]="field.name"
+                      />
+                    </div>
+                  </div>
+                  <div *ngIf="field.label == 'Email'">
+                    <label class="form-label required">{{ field.label }}</label>
+                    <div class="input-icon icon-email">
+                      <input
+                        type="email"
+                        class="form-control"
+                        placeholder="{{ field.placeholder }}"
+                        [formControlName]="field.name"
+                      />
+                    </div>
+                  </div>
+                  <mat-error
+                    class="head-sm"
+                    *ngIf="
+                      getFormControl(field.name)?.invalid &&
+                      getFormControl(field.name)?.touched
+                    "
+                  >
+                    {{ field.label }} is invalid
+                  </mat-error>
+                </ng-container>
+
+                <ng-container *ngSwitchCase="'password'">
+                  <label class="form-label required">{{ field.label }}</label>
+                  <div class="input-icon icon-password">
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="{{ field.placeholder }}"
+                      [formControlName]="field.name"
+                    />
+                  </div>
+                  <mat-error
+                    class="head-sm"
+                    *ngIf="
+                      getFormControl(field.name)?.invalid &&
+                      getFormControl(field.name)?.touched
+                    "
+                  >
+                    {{ field.label }} is invalid
+                  </mat-error>
+                </ng-container>
+              </div>
+            </ng-container>
+
+            <div class="col-md-6 col-lg-4 col-xl-3 w-100 mt">
+              <button
+                type="submit"
+                class="btn btn-primary btn-md w-100"
+                *ngIf="currentSchema.label == 'External User'"
+                [disabled]="form.invalid"
+              >
+                {{ currentSchema.submitButton.label }}
+              </button>
+              <button
+                type="submit"
+                class="btn btn--dark btn-md w-100"
+                *ngIf="currentSchema.label == 'SSO Login'"
+              >
+                {{ currentSchema.submitButton.label }}
+              </button>
+            </div>
+          </form>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="row">
+    <div
+      class="col-12 col-md-6 logo-left-container image-background"
+      style="height: 100vh"
+    >
+      <app-login-graphic></app-login-graphic>
+    </div>
+    <div
+      class="col-12 col-md-6 d-flex flex-column login-right-container"
+      style="height: 100vh"
+    >
+      <div
+        class="logo-header d-flex justify-content-center align-items-center"
+      ></div>
+      <div
+        class="d-flex flex-column justify-content-center align-items-center flex-grow-1"
+      >
+        <div class="text-center mb-2">
+          <h1 class="text-xl font-semibold">
+            {{ LOGIN_CONFIG.formTitle }}
+          </h1>
+          <p class="text-md">{{ LOGIN_CONFIG.subTitle }}</p>
+        </div>
+        <app-dynamic-form [schema]="LOGIN_CONFIG.schemas"></app-dynamic-form>
+      </div>
+    </div>
+  </div>
+</div>

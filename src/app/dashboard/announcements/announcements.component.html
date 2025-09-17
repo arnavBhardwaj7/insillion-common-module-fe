@@ -1,0 +1,12 @@
+<div class="col-12">
+  <div class="marquee-outer-wrapper" *ngIf="updates?.length">
+    <div class="marquee-heading">{{ updateSection?.title }}</div>
+    <div class="marquee">
+      <div class="marquee-scrolling">
+        <span class="items" *ngFor="let item of updates">
+          {{ item?.announcement }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
